@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo app</title>
+</head>
+
+<body>
+    <div>
+        <h1>
+            TO DO LIST
+        </h1>
+            <form action="/add" method="POST">
+                <div>
+                    <label> Enter the task</label>
+                    <input type="text" name="name">
+                    <button type="submit"> Add task</button>
+                </div>
+            </form><br /><br />
+            <table>
+                <tbody>
+                    {% for td in todo %}
+                    <tr>
+                    <td>{{td.task_id}}</td>
+                    <td>{{td.name}}</td>
+                    {% if td.done==False %}
+                        <td>Not done</td>
+                        {% else %}
+                        <td>Done</td>
+                        {% endif %}
+                        <td><a href="/update/{{td.task_id}}">Update</a></td>
+                        <td><a href="/delete/{{td.task_id}}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</body>
+
+</html>
